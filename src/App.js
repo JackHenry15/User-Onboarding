@@ -32,17 +32,7 @@ function App() {
   const [disabled, setDisabled] = useState(initialDisabled) // boolean
 
   //helpers
-  // const getUsers = () => {
-  //   // get all friends
-  //   axios
-  //   .get(`https://reqres.in/api/users`)
-  //   .then(res => {
-  //     setUsers(res.data);
-  //   })
-  //   .catch(err => {
-  //     console.log('error', err);
-  //   })
-  // }
+
   
   const postNewUser = newUser => {
     // on success add new user to state. helper POST newUser to `https://reqres.in/api/users`
@@ -53,6 +43,7 @@ function App() {
       setUsers([
         ...users, res.data
       ])
+      console.log(users)
     })
     .catch(err => {
       console.log('error', err);
@@ -89,10 +80,6 @@ function App() {
     postNewUser(newUser)
   }
 
-  //side effects
-  // useEffect(() => {
-  //   getUsers()
-  // }, [])
 
   useEffect(() => {
     formSchema.isValid(formValues).then(valid => setDisabled(!valid))
@@ -106,35 +93,13 @@ function App() {
       change={inputChange}
       submit={formSubmit}
       disabled={disabled}
-      errors={formErrors}      
+      errors={formErrors}   
+      
       />
-      <pre>
-        JSON.stringify([users])
-        </pre>
+      <pre id='json'>{JSON.stringify(users)}</pre>
+      
     </div>
   );
 }
 
 export default App;
-
-// {
-//   users.map(user => {
-//     return (
-//       <div className='user container'>
-//         <h2>{user.name}</h2>
-//         <p>Email: {user.email}</p>
-//         <p>Password: {user.password}</p>
-//         <p></p>
-//         {
-//           !!user.tos && !!user.tos.length &&
-//           <div>
-//             Users:
-//             <ul>
-
-//             </ul>
-//           </div>
-//         }
-//       </div>
-//     )
-//   })
-// }   
