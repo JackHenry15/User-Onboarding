@@ -48,15 +48,18 @@ const submitButton = () => cy.get('button')
             tosInput().check()
             submitButton().click()
         })
-        // check for form validation if an input is left empty
-        it('check for form validation if an input is left empty', () => {
-
-            cy.get('form').within(() => {
-            nameInput().should('not.have.value', '')
-            emailInput().should('not.have.value', '')
-            passwordInput().should('not.have.value', '')
-            tosInput().should('be.checked')
-            })
+    })
+    // check for form validation if an input is left empty
+    describe('check for form validation if an input is left empty', () => {
+        it.only('form validation', () => {     
+        nameInput().type('Fake Name').clear()
+        emailInput().type('fake@email.com')
+        passwordInput().type('test')
+        tosInput().check()
+        if( nameInput().should('have.value', '') || emailInput().should('have.value', '') || passwordInput().should('have.value', '') || tosInput().should('not.be.checked')){
+          cy.get('.errors').should('be.visible')
+        }
         })
+        
     })
 })

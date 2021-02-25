@@ -18,7 +18,8 @@ const initialFormValues = {
 const initialFormErrors = {
   name: '',
   email: '',
-  password: ''
+  password: '',
+  tos: false
 }
 
 const initialUsers = []
