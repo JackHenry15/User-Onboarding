@@ -51,7 +51,7 @@ const submitButton = () => cy.get('button')
     })
     // check for form validation if an input is left empty
     describe('check for form validation if an input is left empty', () => {
-        it.only('form validation', () => {     
+        it('form validation', () => {     
         nameInput().type('Fake Name').clear()
         emailInput().type('fake@email.com')
         passwordInput().type('test')
